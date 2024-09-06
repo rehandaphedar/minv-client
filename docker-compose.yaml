@@ -1,0 +1,17 @@
+services:
+  frontend:
+    image: rehandaphedar/minv-client-frontend
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile'
+      args:
+        - API_SERVER_URI=http://host.docker.internal:8001
+      extra_hosts:
+        - 'host.docker.internal:host-gateway'
+    command: ['node', '.']
+    ports:
+      - '3001:3000'
+    environment:
+      - API_SERVER_URI=http://host.docker.internal:8001
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
